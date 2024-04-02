@@ -79,7 +79,7 @@ def move_right(grid):
                 grid[i][j] = q.popleft()
             else:
                 grid[i][j] = 0
-    printGrid(grid)
+    #printGrid(grid)
     for i in range(4):
         for j in range(3,0,-1):
             if grid[i][j] == grid[i][j-1]:
