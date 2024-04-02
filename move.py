@@ -1,3 +1,4 @@
+from collections import deque
 def move_up(grid):
     for i in range(0,3,1):      #addition loop
         for j in range(4):
@@ -7,10 +8,17 @@ def move_up(grid):
             elif grid[i][j] == 0 and grid[i+1][j] != 0:
                 grid[i][j] = grid[i+1][j]
                 grid[i+1][j] = 0
-    for j in range(4):          # remove extra 0 spaces
-        for j in range(3):
-            pass
-        pass
+    for j in range(4):          # remove extra 0 spaces using queues
+        q = deque()
+        for i in range(4):
+            if grid[i][j] != 0:
+                q.append(grid[i][j])
+                grid[i][j] = 0
+        for i in range(4):
+            if len(q) == 0:
+                grid[i][j] = 0
+            else:
+                grid[i][j] = q.popleft()
     return grid
 
 def printGrid(grid):
@@ -22,10 +30,10 @@ def printGrid(grid):
         print()
 
 def defineGrid():
-    grid = [[0,0,2,0],
+    grid = [[0,0,4,0],
             [0,0,0,0],
-            [0,4,8,0],
-            [4,2,2,8]]
+            [0,0,0,4],
+            [2,0,2,2]]
     return grid
 
 if __name__ == "__main__":
