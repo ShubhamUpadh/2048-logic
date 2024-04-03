@@ -4,6 +4,11 @@ class gameEndConditions:
         self.maxTile = None
         self.allFilled = False
         self.gameWin = False
+        self.gameConditionsDict = {
+            100 : "You Win !!!!",
+            200 : "You Lose !!!!",
+            300 : "Continuation Code"
+        }
     
     def maxTileValue(self,grid):
         self.maxTile = float("-inf")

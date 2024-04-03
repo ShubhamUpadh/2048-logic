@@ -10,7 +10,8 @@ class move_class:
     def printGrid(self)->list[list[int]]:
         for i in range(len(self.grid)):
             for j in range(len(self.grid[0])):
-                print(self.grid[i][j],end ="")
+                printVal = str(self.grid[i][j]) + " "*(4-len(str(self.grid[i][j])))
+                print(printVal,end ="")
                 if j != len(self.grid[0]) - 1:
                     print(end=" | ")
             print()
