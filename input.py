@@ -1,12 +1,13 @@
 from move import move_class
-from randomTile import generateRandomTile, generateRandomTileFirstChance
-flag = 0
+from randomTile import generateRandom
 grid = [[0 for _ in range(4)] for _ in range(4)]
 moveClass = move_class(grid)
+flag = 0
 while flag < 10:
     if flag == 0:
         print("Welcome to the 2048 game")
-        grid = generateRandomTileFirstChance(grid=grid)
+        genR = generateRandom(grid)
+        grid = genR.generateRandomTileFirstChance()
         moveClass.updateGrid(grid)
         flag = not flag
         moveClass.printGrid()
@@ -23,7 +24,8 @@ while flag < 10:
         grid = moveClass.move_left()
     elif inputVal == 4:
         grid = moveClass.move_right()
-    grid = generateRandomTile(grid)
+    genR = generateRandom(grid)
+    grid = genR.generateRandomTile()
     moveClass.updateGrid(grid)
     moveClass.printGrid()
     flag += 1
