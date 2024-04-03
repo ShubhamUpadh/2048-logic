@@ -1,11 +1,8 @@
 from collections import deque
 
 class move_class:
-    def __init__(self):
-        self.grid = [[4,2,8,4],
-                [2,0,2,2],
-                [0,0,0,2],
-                [0,0,2,0]]
+    def __init__(self,grid):
+        self.grid = grid
 
     def defineGrid(self):
         return self.grid
@@ -114,7 +111,11 @@ class move_class:
 
 
 if __name__ == "__main__":
-    moveClass = move_class()
+    grid =  [[4,2,8,4],
+                [2,0,2,2],
+                [0,0,0,2],
+                [0,0,2,0]]
+    moveClass = move_class(grid)
     grid = moveClass.defineGrid()
     moveClass.printGrid()
     grid = moveClass.move_right()
