@@ -1,13 +1,5 @@
 from collections import deque
-def move_up(grid):
-    for i in range(0,3,1):      #addition loop
-        for j in range(4):
-            if grid[i][j] == grid[i+1][j]:
-                grid[i][j] = 2 * grid[i][j]
-                grid[i+1][j] = 0
-            elif grid[i][j] == 0 and grid[i+1][j] != 0:
-                grid[i][j] = grid[i+1][j]
-                grid[i+1][j] = 0
+def move_up(grid:list[list[int]])->list[list[int]]:
     for j in range(4):          # remove extra 0 spaces using queues
         q = deque()
         for i in range(4):
@@ -20,8 +12,16 @@ def move_up(grid):
             else:
                 grid[i][j] = q.popleft()
     return grid
+    for i in range(0,3,1):      #addition loop
+        for j in range(4):
+            if grid[i][j] == grid[i+1][j]:
+                grid[i][j] = 2 * grid[i][j]
+                grid[i+1][j] = 0
+            elif grid[i][j] == 0 and grid[i+1][j] != 0:
+                grid[i][j] = grid[i+1][j]
+                grid[i+1][j] = 0
 
-def move_down(grid):
+def move_down(grid:list[list[int]])->list[list[int]]:
     
     for j in range(4):          # remove extra 0 spaces using queues
         q = deque()
@@ -44,7 +44,7 @@ def move_down(grid):
                 grid[i-1][j] = 0
     return grid
 
-def move_left(grid):
+def move_left(grid:list[list[int]])->list[list[int]]:
     for i in range(4):  # remove extra 0s
         q = deque()
         for j in range(4):
@@ -67,7 +67,7 @@ def move_left(grid):
                 grid[i][j+1] = 0
     return grid
 
-def move_right(grid):
+def move_right(grid:list[list[int]])->list[list[int]]:
     for i in range(4):  # remove extra 0s
         q = deque()
         for j in range(3,-1,-1):
@@ -90,7 +90,7 @@ def move_right(grid):
                 grid[i][j-1] = 0
     return grid
 
-def printGrid(grid):
+def printGrid(grid:list[list[int]])->list[list[int]]:
     for i in range(len(grid)):
         for j in range(len(grid[0])):
             print(grid[i][j],end ="")
