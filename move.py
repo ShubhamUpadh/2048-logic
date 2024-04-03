@@ -4,8 +4,8 @@ class move_class:
     def __init__(self,grid):
         self.grid = grid
 
-    def defineGrid(self):
-        return self.grid
+    def updateGrid(self,grid):
+        self.grid = grid
     
     def printGrid(self)->list[list[int]]:
         for i in range(len(self.grid)):
