@@ -5,7 +5,10 @@ class move_class:
         self.grid = grid
         self.orgGrid = [[val for val in row] for row in grid]
     
-    def anyChange(self)->bool:
+    def updateChangeGrid(self) -> list[list[int]]:
+        self.orgGrid = [[val for val in row] for row in self.grid]
+    
+    def anyChange(self) -> bool:
         for i in range(len(self.grid)):
             for j in range(len(self.grid[0])):
                 if self.grid != self.orgGrid:
@@ -27,6 +30,7 @@ class move_class:
 
         
     def move_up(self)->list[list[int]]:
+        self.updateChangeGrid()     # update the dummy grid to current grid
         for j in range(4):          # remove extra 0 spaces using queues
             q = deque()
             for i in range(4):
@@ -50,7 +54,7 @@ class move_class:
         return [self.grid,self.anyChange()]
 
     def move_down(self)->list[list[int]]:
-        
+        self.updateChangeGrid()     # update the dummy grid to current grid
         for j in range(4):          # remove extra 0 spaces using queues
             q = deque()
             for i in range(3,-1,-1):
@@ -73,6 +77,7 @@ class move_class:
         return [self.grid,self.anyChange()]
 
     def move_left(self)->list[list[int]]:
+        self.updateChangeGrid()     # update the dummy grid to current grid
         for i in range(4):  # remove extra 0s
             q = deque()
             for j in range(4):
@@ -96,6 +101,7 @@ class move_class:
         return [self.grid,self.anyChange()]
 
     def move_right(self)->list[list[int]]:
+        self.updateChangeGrid()     # update the dummy grid to current grid
         for i in range(4):  # remove extra 0s
             q = deque()
             for j in range(3,-1,-1):

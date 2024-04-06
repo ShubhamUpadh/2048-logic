@@ -25,7 +25,7 @@ while True:                                      # play the game infinitely
         print(gameState.gameConditionsDict[gameStateVal])
         break
     
-    changeGrid = True
+    changeGrid = False
     inputVal = int(input("1 for up, 2 for down, 3 for left, 4 for right - "))
     if inputVal not in [1,2,3,4]:
         print("Enter a value between 1 - 4")
