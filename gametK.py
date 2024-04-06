@@ -34,6 +34,8 @@ title_label.pack()
 canvas = tk.Canvas(root, width=4 * cell_size + 2 * padding, height=4 * cell_size + 2 * padding, bg="white")
 canvas.pack()
 
+
+
 def main():
     global firstMove
     if firstMove:
@@ -46,8 +48,50 @@ def main():
     grid = moveObj.grid
     printGrid(grid)  # Print initial grid
     
-    # Bind "Up" arrow key press event to moveUp function
-    root.bind("<Up>", lambda event: moveObj.move_up())
+    def on_w_key(event):
+        print("W KEY PRESSED")
+        changeGrid, anyChange = moveObj.move_up()
+        if anyChange is True:
+            genRandom.generateRandomTile()
+            printGrid(grid)
+            return "break"
+    
+    def on_s_key(event):
+        print("S KEY PRESSED")
+        changeGrid, anyChange = moveObj.move_down()
+        if anyChange is True:
+            genRandom.generateRandomTile()
+            printGrid(grid)
+            return "break"
+    
+    def on_a_key(event):
+        print("A KEY PRESSED")
+        changeGrid, anyChange = moveObj.move_left()
+        if anyChange is True:
+            genRandom.generateRandomTile()
+            printGrid(grid)
+            return "break"
+    
+    def on_d_key(event):
+        print("D KEY PRESSED")
+        changeGrid, anyChange = moveObj.move_right()
+        if anyChange is True:
+            genRandom.generateRandomTile()
+            printGrid(grid)
+            return "break"
+
+    # Bind "Up" arrow key press event to move_up function
+    root.bind("w", on_w_key)
+    
+    # Bind "Down" arrow key press event to move_down function
+    root.bind("s", on_s_key)
+
+    # Bind "Left" arrow key press event to move_left function
+    root.bind("a", on_a_key)
+
+    # Bind "Right" arrow key press event to move_right function
+    root.bind("d", on_d_key)
+
 
     root.mainloop()
 
