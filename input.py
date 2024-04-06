@@ -46,4 +46,4 @@ while True:                                      # play the game infinitely
         moveClass.updateGrid(grid)
     
     moveClass.printGrid()
-    print(changeGrid)
+    #print(changeGrid)
