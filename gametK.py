@@ -3,9 +3,10 @@ from typing import List
 import random
 from move import move_class
 from randomTile import generateRandom
+from constants import *
 
 cell_size = 80  # Define cell size
-padding = 10  # Define padding
+padding = GRID_PADDING  # Define padding
 
 def generateRandomTile(grid: List[List[int]]) -> None:
     emptyCells = [(i, j) for i in range(4) for j in range(4) if grid[i][j] == 0]
@@ -15,23 +16,29 @@ def generateRandomTile(grid: List[List[int]]) -> None:
         grid[randomCell[0]][randomCell[1]] = randomCellValue
     printGrid(grid)
 
+
+
 def printGrid(grid: List[List[int]]) -> None:
     canvas.delete("all")
     for i in range(4):
         for j in range(4):
-            x0 = j * cell_size + padding
-            y0 = i * cell_size + padding
+            x0 = j * (cell_size + padding) + padding
+            y0 = i * (cell_size + padding) + padding
             x1 = x0 + cell_size
             y1 = y0 + cell_size
-            canvas.create_rectangle(x0, y0, x1, y1, fill="lightgray", outline="black")
-            canvas.create_text((x0 + x1) / 2, (y0 + y1) / 2, text=str(grid[i][j]), font=("Arial", 20, "bold"))
+            tile_color = BACKGROUND_COLOR_DICT.get(grid[i][j],BACKGROUND_COLOR_CELL_EMPTY)
+            canvas.create_rectangle(x0, y0, x1, y1, fill=tile_color, outline= BACKGROUND_COLOR_DICT.get(grid[i][j],BACKGROUND_COLOR_CELL_EMPTY))
+            txt = "" if grid[i][j] == 0 else str(grid[i][j])
+            canvas.create_text((x0 + x1) / 2, (y0 + y1) / 2, text=txt, font=FONT)
+    
 
 root = tk.Tk()
 root.title("2048 Game")
+root.configure(background="white",bg="white")
 
 title_label = tk.Label(root, text="2048 Game", font=("Arial", 20, "bold"))
 title_label.pack()
-canvas = tk.Canvas(root, width=4 * cell_size + 2 * padding, height=4 * cell_size + 2 * padding, bg="white")
+canvas = tk.Canvas(root, width=4 * cell_size + 5 * padding, height=4 * cell_size + 5 * padding, bg="white")
 canvas.pack()
 
 
