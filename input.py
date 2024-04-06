@@ -24,21 +24,26 @@ while True:                                      # play the game infinitely
     if gameStateVal in (100,200):
         print(gameState.gameConditionsDict[gameStateVal])
         break
-
-
+    
+    changeGrid = True
     inputVal = int(input("1 for up, 2 for down, 3 for left, 4 for right - "))
     if inputVal not in [1,2,3,4]:
         print("Enter a value between 1 - 4")
         continue
     if inputVal == 1:
-        grid = moveClass.move_up()
+        gridRet, changeGrid = moveClass.move_up()
     elif inputVal == 2:
-        grid = moveClass.move_down()
+        grid, changeGrid = moveClass.move_down()
     elif inputVal == 3:
-        grid = moveClass.move_left()
+        grid, changeGrid = moveClass.move_left()
     elif inputVal == 4:
-        grid = moveClass.move_right()
-    genR = generateRandom(grid)
-    grid = genR.generateRandomTile()
-    moveClass.updateGrid(grid)
+        grid, changeGrid = moveClass.move_right()
+    
+    if changeGrid:  #if any change in grid, thenn only generate a random element
+        #print(changeGrid)
+        genR = generateRandom(grid)
+        grid = genR.generateRandomTile()
+        moveClass.updateGrid(grid)
+    
     moveClass.printGrid()
+    print(changeGrid)
