@@ -10,4 +10,4 @@ BACKGROUND_COLOR_DICT ={
     512:"#edc850", 1024:"#edc53f", 2048:"#edc22c"
 }
 
-FONT = ("VERDANA", 40, "bold")
+FONT = ("VERDANA", 20,)

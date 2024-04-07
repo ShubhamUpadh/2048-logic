@@ -4,8 +4,9 @@ import random
 from move import move_class
 from randomTile import generateRandom
 from constants import *
+from tkinter import messagebox
 
-cell_size = 80  # Define cell size
+cell_size = 100  # Define cell size
 padding = GRID_PADDING  # Define padding
 
 def generateRandomTile(grid: List[List[int]]) -> None:
